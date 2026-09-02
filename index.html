@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cádiz Meet Week</title>
+<meta name="description" content="Kaiserslautern Kingfish — Cádiz trip guide, 23–30 November 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* ---------- tokens: light ---------- */
+:root{
+  --royal:#0030A8;
+  --royal-deep:#001F6E;
+  --red:#D81830;
+  --sky:#4B9CD3;
+  --ground:#F4F7FC;
+  --surface:#FFFFFF;
+  --surface-2:#EDF2FA;
+  --ink:#12203E;
+  --ink-2:#3D4E71;
+  --muted:#6B7C9C;
+  --line:#D8E1F0;
+  --line-strong:#B9C8E0;
+  --shadow:0 1px 2px rgba(18,32,62,.06),0 8px 24px rgba(18,32,62,.06);
+  --chip-ink:#FFFFFF;
+  color-scheme:light;
+}
+/* ---------- tokens: dark (system default, no stamp) ---------- */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --royal:#5B8CF5;
+    --royal-deep:#8FB2FF;
+    --red:#FF6377;
+    --sky:#6FB6E8;
+    --ground:#0A1120;
+    --surface:#131D33;
+    --surface-2:#1B2842;
+    --ink:#E8EEFB;
+    --ink-2:#B4C2DC;
+    --muted:#8A9AB8;
+    --line:#25334F;
+    --line-strong:#35486B;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    --chip-ink:#0A1120;
+    color-scheme:dark;
+  }
+}
+/* ---------- tokens: dark (explicit stamp) ---------- */
+:root[data-theme="dark"]{
+  --royal:#5B8CF5;
+  --royal-deep:#8FB2FF;
+  --red:#FF6377;
+  --sky:#6FB6E8;
+  --ground:#0A1120;
+  --surface:#131D33;
+  --surface-2:#1B2842;
+  --ink:#E8EEFB;
+  --ink-2:#B4C2DC;
+  --muted:#8A9AB8;
+  --line:#25334F;
+  --line-strong:#35486B;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  --chip-ink:#0A1120;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Source Sans 3",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;
+  line-height:1.55;
+}
+h1,h2,h3,.disp{
+  font-family:Oswald,"Arial Narrow",Impact,sans-serif;
+  font-weight:600;
+  text-wrap:balance;
+  margin:0;
+  letter-spacing:.01em;
+}
+a{color:var(--royal)}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px;border-radius:4px}
+
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+
+/* ---------- masthead ---------- */
+.mast{
+  background:linear-gradient(180deg,var(--royal-deep),var(--royal));
+  color:#fff;
+  padding:18px 0 14px;
+  border-bottom:4px solid var(--red);
+}
+:root[data-theme="dark"] .mast,
+:root:not([data-theme="light"]) .mast{ }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .mast{background:linear-gradient(180deg,#0C1A38,#16295A)}
+}
+:root[data-theme="dark"] .mast{background:linear-gradient(180deg,#0C1A38,#16295A)}
+
+.lockup{display:flex;align-items:center;gap:12px}
+.lockup svg{flex:0 0 auto;display:block}
+.team{
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:11px;
+  font-weight:500;
+  color:rgba(255,255,255,.82);
+  margin:0 0 2px;
+}
+.mast h1{font-size:clamp(26px,7vw,38px);color:#fff;text-transform:uppercase;letter-spacing:.02em;line-height:1}
+.mast .sub{
+  margin:6px 0 0;font-size:14px;color:rgba(255,255,255,.85);
+  font-variant-numeric:tabular-nums;
+}
+
+/* ---------- tabs ---------- */
+.tabs{
+  position:sticky;top:0;z-index:20;
+  background:var(--surface);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 1px 0 var(--line);
+}
+.tabs-inner{
+  display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;
+  max-width:760px;margin:0 auto;padding:0 8px;
+}
+.tabs-inner::-webkit-scrollbar{display:none}
+.tab{
+  flex:0 0 auto;appearance:none;border:0;background:none;cursor:pointer;
+  font-family:Oswald,sans-serif;font-size:13px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.1em;
+  color:var(--muted);padding:14px 12px 11px;border-bottom:3px solid transparent;
+  transition:color .15s ease,border-color .15s ease;
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--royal);border-bottom-color:var(--red)}
+
+main{padding:22px 0 64px}
+.panel[hidden]{display:none}
+.panel{display:flex;flex-direction:column;gap:18px}
+
+/* ---------- cards ---------- */
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.card-b{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.eyebrow{
+  font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.14em;
+  font-size:11px;font-weight:500;color:var(--muted);margin:0;
+}
+h2.sec{font-size:20px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
+h3{font-size:17px;color:var(--ink)}
+p{margin:0;color:var(--ink-2)}
+.small{font-size:14px}
+
+/* countdown */
+.count{
+  display:flex;align-items:baseline;gap:10px;
+  font-family:Oswald,sans-serif;
+}
+.count .n{font-size:52px;font-weight:700;line-height:.9;color:var(--royal);font-variant-numeric:tabular-nums}
+.count .l{font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+
+/* facts */
+.facts{display:grid;grid-template-columns:1fr;gap:0;margin:0}
+.facts div{
+  display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+  padding:10px 0;border-bottom:1px solid var(--line);
+}
+.facts div:last-child{border-bottom:0}
+.facts dt{
+  font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.1em;
+  font-size:11px;color:var(--muted);flex:0 0 auto;
+}
+.facts dd{margin:0;text-align:right;font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* week strip */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+@media(min-width:560px){.strip{grid-template-columns:repeat(8,1fr)}}
+.pip{
+  border-radius:8px;padding:8px 4px;text-align:center;border:1px solid var(--line);
+  background:var(--surface-2);
+}
+.pip .d{font-family:Oswald,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.pip .n{font-family:Oswald,sans-serif;font-size:19px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.2}
+.pip.meet{background:var(--red);border-color:var(--red)}
+.pip.meet .d,.pip.meet .n{color:var(--chip-ink)}
+:root:not([data-theme="dark"]) .pip.meet .d,
+:root:not([data-theme="dark"]) .pip.meet .n{color:#fff}
+.pip.travel{background:var(--royal);border-color:var(--royal)}
+.pip.travel .d,.pip.travel .n{color:#fff}
+:root[data-theme="dark"] .pip.travel .d,
+:root[data-theme="dark"] .pip.travel .n{color:var(--chip-ink)}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .pip.travel .d,
+  :root:not([data-theme="light"]) .pip.travel .n,
+  :root:not([data-theme="light"]) .pip.meet .d,
+  :root:not([data-theme="light"]) .pip.meet .n{color:var(--chip-ink)}
+}
+
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block;border:1px solid var(--line)}
+
+/* ---------- day cards ---------- */
+.day{
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  box-shadow:var(--shadow);display:flex;overflow:hidden;
+}
+.day .rail{flex:0 0 6px;background:var(--sky)}
+.day.travel .rail{background:var(--royal)}
+.day.meet .rail{background:var(--red)}
+.day .body{padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0;flex:1}
+.day-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.day-date{
+  font-family:Oswald,sans-serif;font-size:12px;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--muted);font-variant-numeric:tabular-nums;
+}
+.day h3{font-size:18px;text-transform:uppercase;letter-spacing:.03em}
+.tag{
+  font-family:Oswald,sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.12em;
+  padding:3px 8px;border-radius:999px;border:1px solid var(--line-strong);color:var(--muted);
+  white-space:nowrap;
+}
+.tag.meet{background:var(--red);border-color:var(--red);color:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tag.meet{color:var(--chip-ink)}}
+:root[data-theme="dark"] .tag.meet{color:var(--chip-ink)}
+.day ul{margin:0;padding-left:18px;color:var(--ink-2);display:flex;flex-direction:column;gap:5px}
+.day .drive{font-size:13px;color:var(--muted);font-style:italic}
+
+/* ---------- timeline (drive math) ---------- */
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.tl li{display:flex;gap:14px;padding:0 0 14px;position:relative}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{
+  content:"";position:absolute;left:53px;top:20px;bottom:0;width:2px;background:var(--line);
+}
+.tl li:last-child::before{display:none}
+.tl .t{
+  flex:0 0 44px;text-align:right;font-family:Oswald,sans-serif;font-weight:600;font-size:15px;
+  color:var(--royal);font-variant-numeric:tabular-nums;line-height:1.3;
+}
+.tl .dot{
+  flex:0 0 12px;height:12px;border-radius:50%;background:var(--surface);
+  border:3px solid var(--royal);margin-top:5px;position:relative;z-index:1;
+}
+.tl li.flag .dot{border-color:var(--red)}
+.tl li.flag .t{color:var(--red)}
+.tl .txt{flex:1;min-width:0}
+.tl .txt strong{color:var(--ink);font-weight:600}
+.tl .txt em{display:block;font-style:normal;font-size:13px;color:var(--muted)}
+
+/* ---------- callout ---------- */
+.callout{
+  border-left:4px solid var(--red);background:var(--surface-2);
+  padding:12px 14px;border-radius:0 8px 8px 0;display:flex;flex-direction:column;gap:6px;
+}
+.callout .eyebrow{color:var(--red)}
+
+/* ---------- hotel picks ---------- */
+.pick{border:1px solid var(--line);border-radius:10px;background:var(--surface);box-shadow:var(--shadow);overflow:hidden}
+.pick.best{border-color:var(--royal);border-width:2px}
+.pick-h{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+  padding:14px 16px 0;
+}
+.pick-h h3{font-size:17px}
+.pick .meta{padding:0 16px 14px;display:flex;flex-direction:column;gap:8px}
+.badge{
+  font-family:Oswald,sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.12em;
+  background:var(--royal);color:#fff;padding:4px 9px;border-radius:999px;white-space:nowrap;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .badge{color:var(--chip-ink)}}
+:root[data-theme="dark"] .badge{color:var(--chip-ink)}
+.badge.alt{background:transparent;color:var(--muted);border:1px solid var(--line-strong)}
+.kv{display:flex;flex-wrap:wrap;gap:6px}
+.kv span{
+  font-size:12px;background:var(--surface-2);border:1px solid var(--line);
+  padding:3px 9px;border-radius:999px;color:var(--ink-2);
+}
+
+/* ---------- checklist ---------- */
+.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.check li{border-bottom:1px solid var(--line)}
+.check li:last-child{border-bottom:0}
+.check label{
+  display:flex;gap:12px;align-items:flex-start;padding:12px 2px;cursor:pointer;
+}
+.check input{
+  appearance:none;flex:0 0 20px;height:20px;margin-top:2px;border:2px solid var(--line-strong);
+  border-radius:5px;background:var(--surface);cursor:pointer;position:relative;
+  transition:background .15s ease,border-color .15s ease;
+}
+.check input:checked{background:var(--royal);border-color:var(--royal)}
+.check input:checked::after{
+  content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;
+  border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(42deg);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .check input:checked::after{border-color:var(--chip-ink)}}
+:root[data-theme="dark"] .check input:checked::after{border-color:var(--chip-ink)}
+.check input:checked + .ct{color:var(--muted);text-decoration:line-through}
+.ct{flex:1;color:var(--ink);transition:color .15s ease}
+.ct em{display:block;font-style:normal;font-size:13px;color:var(--muted);text-decoration:none}
+
+.reset{
+  appearance:none;background:none;border:1px solid var(--line-strong);color:var(--muted);
+  font-family:Oswald,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.1em;
+  padding:7px 12px;border-radius:6px;cursor:pointer;align-self:flex-start;
+}
+.reset:hover{color:var(--ink);border-color:var(--ink-2)}
+
+footer{
+  border-top:1px solid var(--line);margin-top:8px;padding:20px 0 40px;
+  color:var(--muted);font-size:13px;text-align:center;
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="lockup">
+      <svg width="46" height="52" viewBox="0 0 46 52" role="img" aria-label="Kaiserslautern Kingfish crest">
+        <path d="M2 2h42v30c0 10-11 15-21 18C13 47 2 42 2 32V2z" fill="#fff" stroke="#001F6E" stroke-width="2.5"/>
+        <rect x="12" y="4" width="5" height="42" fill="#D81830"/>
+        <rect x="20" y="4" width="5" height="44" fill="#0030A8"/>
+        <rect x="28" y="4" width="5" height="42" fill="#D81830"/>
+        <path d="M2 32c0 10 11 15 21 18 10-3 21-8 21-18" fill="none" stroke="#001F6E" stroke-width="2.5"/>
+      </svg>
+      <div>
+        <p class="team">Kaiserslautern Kingfish Swim Team</p>
+        <h1>Cádiz Meet Week</h1>
+        <p class="sub">23–30 November 2026 · Andalucía, Spain</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="tabs-inner" role="tablist">
+    <button class="tab" role="tab" id="t-trip"  aria-controls="p-trip"  aria-selected="true">Trip</button>
+    <button class="tab" role="tab" id="t-days"  aria-controls="p-days"  aria-selected="false">Days</button>
+    <button class="tab" role="tab" id="t-meet"  aria-controls="p-meet"  aria-selected="false">Meet</button>
+    <button class="tab" role="tab" id="t-drive" aria-controls="p-drive" aria-selected="false">Drive</button>
+    <button class="tab" role="tab" id="t-stay"  aria-controls="p-stay"  aria-selected="false">Stay</button>
+    <button class="tab" role="tab" id="t-todo"  aria-controls="p-todo"  aria-selected="false">To Do</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ===================== TRIP ===================== -->
+<section class="panel" id="p-trip" role="tabpanel" aria-labelledby="t-trip">
+  <div class="card"><div class="card-b">
+    <p class="eyebrow">Wheels up</p>
+    <div class="count"><span class="n" id="cd">—</span><span class="l" id="cdl">days out</span></div>
+    <p class="small">Frankfurt Hahn → Málaga, Monday 23 November.</p>
+  </div></div>
+
+  <div class="card"><div class="card-b">
+    <h2 class="sec">The Week</h2>
+    <div class="strip">
+      <div class="pip travel"><div class="d">Mon</div><div class="n">23</div></div>
+      <div class="pip"><div class="d">Tue</div><div class="n">24</div></div>
+      <div class="pip"><div class="d">Wed</div><div class="n">25</div></div>
+      <div class="pip"><div class="d">Thu</div><div class="n">26</div></div>
+      <div class="pip meet"><div class="d">Fri</div><div class="n">27</div></div>
+      <div class="pip meet"><div class="d">Sat</div><div class="n">28</div></div>
+      <div class="pip meet"><div class="d">Sun</div><div class="n">29</div></div>
+      <div class="pip travel"><div class="d">Mon</div><div class="n">30</div></div>
+    </div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--royal)"></i>Travel</span>
+      <span><i class="sw" style="background:var(--sky)"></i>Free day</span>
+      <span><i class="sw" style="background:var(--red)"></i>Meet</span>
+    </div>
+  </div></div>
+
+  <div class="card"><div class="card-b">
+    <h2 class="sec">Key Facts</h2>
+    <dl class="facts">
+      <div><dt>Lodging</dt><dd>Paseo Marítimo 30<br>Cádiz 11011</dd></div>
+      <div><dt>Arrive AGP</dt><dd>Mon 23 Nov · 09:30</dd></div>
+      <div><dt>Depart AGP</dt><dd>Mon 30 Nov · 10:00</dd></div>
+      <div><dt>Car</dt><dd>Rental, picked up at Málaga</dd></div>
+      <div><dt>Meet venue</dt><dd>Av. José León de Carranza<br>10–15 min walk</dd></div>
+      <div><dt>Weather</dt><dd>Mild · mid-to-high teens °C</dd></div>
+    </dl>
+  </div></div>
+
+  <div class="callout">
+    <p class="eyebrow">The one real decision</p>
+    <p class="small"><strong>Drive to Málaga on Sunday evening instead of 05:00 Monday.</strong> The meet ends Sunday afternoon; a 3-hour drive that evening turns a pre-dawn scramble into a normal morning. See <strong>Stay</strong>.</p>
+  </div>
+</section>
+
+<!-- ===================== DAYS ===================== -->
+<section class="panel" id="p-days" role="tabpanel" aria-labelledby="t-days" hidden>
+
+  <article class="day travel"><div class="rail"></div><div class="body">
+    <div class="day-head"><span class="day-date">Mon 23 Nov</span><span class="tag">Travel</span></div>
+    <h3>Land, Rota, Cádiz</h3>
+    <p class="drive">Málaga → NAS Rota → Cádiz · ~3h20 driving + stop</p>
+    <ul>
+      <li>Land 09:30. Intra-Schengen, so bags only — no passport control.</li>
+      <li><strong>NAS Rota commissary</strong> — snacks and groceries for the picky eater.</li>
+      <li>Into Cádiz ~15:00–15:30. Check in, walk Playa Victoria.</li>
+      <li>Dinner: tapas near Plaza de la Catedral.</li>
+    </ul>
+  </div></article>
+
+  <article class="day"><div class="rail"></div><div class="body">
+    <div class="day-head"><span class="day-date">Tue 24 Nov</span><span class="tag">Day trip</span></div>
+    <h3>Jerez de la Frontera</h3>
+    <p class="drive">~35 min each way</p>
+    <ul>
+      <li>Sherry bodega tour — Tío Pepe / González Byass. Both walk the cellars, works fine with kids.</li>
+      <li>Royal Andalusian School of Equestrian Art — shows run select days only. <strong>Check the schedule and build the day around it.</strong></li>
+    </ul>
+  </div></article>
+
+  <article class="day"><div class="rail"></div><div class="body">
+    <div class="day-head"><span class="day-date">Wed 25 Nov</span><span class="tag">Day trip</span></div>
+    <h3>Vejer &amp; Cabo de Trafalgar</h3>
+    <p class="drive">~45–60 min south</p>
+    <ul>
+      <li>Vejer de la Frontera — hilltop pueblo blanco, one of the prettiest in Spain. Lunch here.</li>
+      <li>Cabo de Trafalgar — lighthouse and a wide empty beach. Windy November walk, not a swim.</li>
+    </ul>
+  </div></article>
+
+  <article class="day"><div class="rail"></div><div class="body">
+    <div class="day-head"><span class="day-date">Thu 26 Nov</span><span class="tag">Light day</span></div>
+    <h3>Cádiz Old Town</h3>
+    <p class="drive">No car — the old town is walkable and dense</p>
+    <ul>
+      <li><strong>Torre Tavira</strong> — camera obscura, best rooftop view in the city.</li>
+      <li><strong>Cathedral</strong> — go <em>up the tower</em>, not just inside.</li>
+      <li>Mercado Central de Abastos for lunch; wander Barrio del Pópulo.</li>
+      <li>Parque Genovés. Early night — meet starts tomorrow.</li>
+    </ul>
+  </div></article>
+
+  <article class="day meet"><div class="rail"></div><div class="body">
+    <div class="day-head"><span class="day-date">Fri 27 Nov</span><span class="tag meet">Meet · evening</span></div>
+    <h3>Ferry Day, Then Racing</h3>
+    <p class="drive">Vaporcito ferry · ~30–40 min each way · no driving</p>
+    <ul>
+      <li>Morning: ferry across the bay to <strong>El Puerto de Santa María</strong>. Wander, lunch on the water.</li>
+      <li>Back to Cádiz mid-afternoon. Rest before the session — deliberately no driving today.</li>
+      <li><strong>Evening: first meet session.</strong></li>
+    </ul>
+  </div></article>
+
+  <article class="day meet"><div class="rail"></div><div class="body">
+    <div class="day-head"><span class="day-date">Sat 28 Nov</span><span class="tag meet">Meet</span></div>
+    <h3>Full Meet Day</h3>
+    <ul>
+      <li>Sessions eat the day. Gaps are for tapas near the venue, not excursions.</li>
+      <li>Walk to the pool — 10–15 min from the flat. Don't move the car.</li>
+    </ul>
+  </div></article>
+
+  <article class="day meet"><div class="rail"></div><div class="body">
+    <div class="day-head"><span class="day-date">Sun 29 Nov</span><span class="tag meet">Meet + drive</span></div>
+    <h3>Finals, Then Head East</h3>
+    <p class="drive">Cádiz → Málaga ~2h40–3h (if taking the Sunday-night option)</p>
+    <ul>
+      <li><strong>Check out of the Cádiz flat in the morning</strong> and load the car before the session.</li>
+      <li>Meet finishes; drive to a hotel near Málaga airport, arrive ~20:00.</li>
+      <li>Real dinner, real sleep. See <strong>Stay</strong> for the picks.</li>
+    </ul>
+  </div></article>
+
+  <article class="day travel"><div class="rail"></div><div class="body">
+    <div class="day-head"><span class="day-date">Mon 30 Nov</span><span class="tag">Travel</span></div>
+    <h3>Home</h3>
+    <ul>
+      <li>Return the rental, terminal by 08:00, wheels up 10:00.</li>
+      <li>Nothing else. This is not a sightseeing day.</li>
+    </ul>
+  </div></article>
+
+</section>
+
+<!-- ===================== MEET ===================== -->
+<section class="panel" id="p-meet" role="tabpanel" aria-labelledby="t-meet" hidden>
+  <div class="card"><div class="card-b">
+    <p class="eyebrow">Venue</p>
+    <h2 class="sec">Av. José León de Carranza</h2>
+    <p>Pool complex in Cádiz, roughly <strong>10–15 minutes on foot</strong> from Paseo Marítimo 30. The whole meet weekend is walkable — leave the car parked.</p>
+  </div></div>
+
+  <div class="card"><div class="card-b">
+    <h2 class="sec">Schedule</h2>
+    <dl class="facts">
+      <div><dt>Fri 27</dt><dd>Evening session only</dd></div>
+      <div><dt>Sat 28</dt><dd>Full day</dd></div>
+      <div><dt>Sun 29</dt><dd>Full day · finals</dd></div>
+    </dl>
+    <p class="small">Session start times still need confirming with the team — that's the last piece of the Sunday drive plan.</p>
+  </div></div>
+
+  <div class="card"><div class="card-b">
+    <h2 class="sec">Between Sessions</h2>
+    <ul style="margin:0;padding-left:18px;color:var(--ink-2);display:flex;flex-direction:column;gap:6px">
+      <li>Tapas near the venue — not a drive, not a museum.</li>
+      <li>Playa Victoria boardwalk is right there if they need air.</li>
+      <li>Friday daytime is the ferry; Saturday and Sunday gaps are short.</li>
+    </ul>
+  </div></div>
+
+  <div class="callout">
+    <p class="eyebrow">Why Friday is a ferry, not a road trip</p>
+    <p class="small">The girls swim Friday evening. Stacking a driving day in front of that costs them the session. The ferry gets you out of the flat without putting anyone in a car seat for two hours.</p>
+  </div>
+</section>
+
+<!-- ===================== DRIVE ===================== -->
+<section class="panel" id="p-drive" role="tabpanel" aria-labelledby="t-drive" hidden>
+
+  <div class="card"><div class="card-b">
+    <p class="eyebrow">Monday 23 November</p>
+    <h2 class="sec">Arrival Math</h2>
+    <ul class="tl">
+      <li><span class="t">09:30</span><span class="dot"></span><span class="txt"><strong>Land at Málaga</strong><em>Intra-Schengen — bags only, no passport control</em></span></li>
+      <li><span class="t">10:45</span><span class="dot"></span><span class="txt"><strong>Wheels rolling</strong><em>~30 min bags + ~30–45 min rental pickup</em></span></li>
+      <li class="flag"><span class="t">13:30</span><span class="dot"></span><span class="txt"><strong>NAS Rota gate</strong><em>~2h40 from Málaga · roughly on the way, not a detour</em></span></li>
+      <li><span class="t">14:30</span><span class="dot"></span><span class="txt"><strong>Commissary done</strong><em>~45 min–1 hr for the run</em></span></li>
+      <li><span class="t">15:15</span><span class="dot"></span><span class="txt"><strong>Into Cádiz</strong><em>~30–40 min from Rota · afternoon light, enough for a walk and dinner</em></span></li>
+    </ul>
+  </div></div>
+
+  <div class="callout">
+    <p class="eyebrow">Rota gate — bring these</p>
+    <p class="small"><strong>CAC · rental agreement · proof of insurance.</strong> It's a rental, not a POV, so the paperwork gets looked at. Have it out before you reach the gate.</p>
+  </div>
+
+  <div class="card"><div class="card-b">
+    <p class="eyebrow">Monday 30 November — Option A</p>
+    <h2 class="sec">Straight From Cádiz</h2>
+    <ul class="tl">
+      <li class="flag"><span class="t">05:00</span><span class="dot"></span><span class="txt"><strong>Leave Cádiz</strong><em>Pre-dawn, after three days of meet</em></span></li>
+      <li><span class="t">07:45</span><span class="dot"></span><span class="txt"><strong>Málaga · return car</strong><em>~2h40 drive with no margin for error</em></span></li>
+      <li><span class="t">08:00</span><span class="dot"></span><span class="txt"><strong>Terminal</strong></span></li>
+      <li><span class="t">10:00</span><span class="dot"></span><span class="txt"><strong>Takeoff</strong></span></li>
+    </ul>
+    <p class="small">One traffic delay, one slow rental return, one kid who won't wake up, and the flight is gone.</p>
+  </div></div>
+
+  <div class="card" style="border-color:var(--royal);border-width:2px"><div class="card-b">
+    <p class="eyebrow" style="color:var(--royal)">Sunday night — Option B · recommended</p>
+    <h2 class="sec">Sleep Near the Airport</h2>
+    <ul class="tl">
+      <li><span class="t">AM</span><span class="dot"></span><span class="txt"><strong>Check out in Cádiz, load the car</strong><em>Sunday morning, before the final session</em></span></li>
+      <li><span class="t">~17:00</span><span class="dot"></span><span class="txt"><strong>Meet ends — drive east</strong><em>~2h40–3h to Málaga</em></span></li>
+      <li><span class="t">~20:00</span><span class="dot"></span><span class="txt"><strong>Hotel near AGP</strong><em>Dinner, unpack nothing, sleep</em></span></li>
+      <li><span class="t">07:00</span><span class="dot"></span><span class="txt"><strong>Up</strong><em>Two hours of slack instead of zero</em></span></li>
+      <li><span class="t">08:00</span><span class="dot"></span><span class="txt"><strong>Car returned, terminal</strong></span></li>
+    </ul>
+  </div></div>
+
+  <div class="card"><div class="card-b">
+    <h2 class="sec">Distances</h2>
+    <dl class="facts">
+      <div><dt>Málaga → Rota</dt><dd>~2h40</dd></div>
+      <div><dt>Rota → Cádiz</dt><dd>~30–40 min</dd></div>
+      <div><dt>Cádiz → Málaga</dt><dd>~2h40–3h</dd></div>
+      <div><dt>Cádiz → Jerez</dt><dd>~35 min</dd></div>
+      <div><dt>Cádiz → Vejer</dt><dd>~45–60 min</dd></div>
+      <div><dt>Cádiz → Sanlúcar</dt><dd>~45 min</dd></div>
+    </dl>
+  </div></div>
+</section>
+
+<!-- ===================== STAY ===================== -->
+<section class="panel" id="p-stay" role="tabpanel" aria-labelledby="t-stay" hidden>
+
+  <div class="card"><div class="card-b">
+    <p class="eyebrow">Nights of 23–28 November</p>
+    <h2 class="sec">Cádiz — Booked</h2>
+    <p><strong>Paseo Marítimo 30, Cádiz, Andalucía 11011.</strong> On Playa Victoria, 10–15 min walk to the pool complex, walkable to the old town.</p>
+  </div></div>
+
+  <div class="card"><div class="card-b">
+    <p class="eyebrow">Night of 29 November</p>
+    <h2 class="sec">Málaga Airport — To Book</h2>
+    <p class="small">All four have free parking, which matters more than a shuttle when you've got a rental to return.</p>
+  </div></div>
+
+  <article class="pick best">
+    <div class="pick-h">
+      <h3>Parador de Málaga Golf</h3>
+      <span class="badge">Best last night</span>
+    </div>
+    <div class="meta">
+      <p class="small">Churriana, ~10 min to the terminal. State-run parador, 4-star, on the golf course near Los Álamos beach. Actual restaurant, actual grounds — the one that feels like a reward after three days on a pool deck rather than a bed by a runway.</p>
+      <div class="kv"><span>4-star</span><span>Free parking</span><span>~10 min to AGP</span><span>Restaurant on site</span></div>
+    </div>
+  </article>
+
+  <article class="pick">
+    <div class="pick-h">
+      <h3>Holiday Inn Express Málaga Airport</h3>
+      <span class="badge alt">Closest</span>
+    </div>
+    <div class="meta">
+      <p class="small">Churriana, ~1 km from the terminal — the nearest hotel to AGP. Family rooms take two adults plus two kids on a sofa bed, under-17s free in the parents' room. 24-hour desk, very early breakfast. Reviews are mixed on cleanliness and service; sources disagree on whether the shuttle is complimentary, so confirm if it matters.</p>
+      <div class="kv"><span>Free parking</span><span>~1 km to AGP</span><span>Family rooms</span><span>24h desk</span><span>Mixed reviews</span></div>
+    </div>
+  </article>
+
+  <article class="pick">
+    <div class="pick-h">
+      <h3>Hotel Zen Airport</h3>
+      <span class="badge alt">Has a pool</span>
+    </div>
+    <div class="meta">
+      <p class="small">Torremolinos, quiet residential area. Free airport shuttle and a heated outdoor pool — the shuttle is moot with a rental car, but confirm shuttle times with reception if you'd rather drop the car the night before.</p>
+      <div class="kv"><span>Free shuttle</span><span>Heated pool</span><span>Torremolinos</span></div>
+    </div>
+  </article>
+
+  <article class="pick">
+    <div class="pick-h">
+      <h3>Travelodge Málaga Airport</h3>
+      <span class="badge alt">Cheapest</span>
+    </div>
+    <div class="meta">
+      <p class="small">3-star, 114 rooms, free on-site parking. No frills — a clean bed near the airport and nothing more.</p>
+      <div class="kv"><span>3-star</span><span>Free parking</span><span>Budget</span></div>
+    </div>
+  </article>
+
+  <div class="callout">
+    <p class="eyebrow">Trade-off to weigh</p>
+    <p class="small">Option B costs one hotel night and means checking out of Cádiz on Sunday morning — bags in the car through the final session. What it buys is a 07:00 wake-up instead of 04:30 and a flight you won't miss.</p>
+  </div>
+</section>
+
+<!-- ===================== TO DO ===================== -->
+<section class="panel" id="p-todo" role="tabpanel" aria-labelledby="t-todo" hidden>
+  <div class="card"><div class="card-b">
+    <h2 class="sec">Before You Go</h2>
+    <ul class="check" id="cl">
+      <li><label><input type="checkbox" data-k="c1"><span class="ct">Book Málaga airport hotel for Sun 29<em>Decide Option A vs B first</em></span></label></li>
+      <li><label><input type="checkbox" data-k="c2"><span class="ct">Confirm meet session times<em>Especially Sunday's finish — it sets the drive</em></span></label></li>
+      <li><label><input type="checkbox" data-k="c3"><span class="ct">Book sherry bodega tour in Jerez<em>Tío Pepe or González Byass</em></span></label></li>
+      <li><label><input type="checkbox" data-k="c4"><span class="ct">Check Equestrian School show schedule<em>Shows run select days — reshape Tuesday around it</em></span></label></li>
+      <li><label><input type="checkbox" data-k="c5"><span class="ct">Check Vaporcito ferry winter timetable<em>November service may be reduced or suspended</em></span></label></li>
+      <li><label><input type="checkbox" data-k="c6"><span class="ct">Rental car — confirm insurance docs for Rota gate</span></label></li>
+      <li><label><input type="checkbox" data-k="c7"><span class="ct">Commissary list for the picky eater</span></label></li>
+      <li><label><input type="checkbox" data-k="c8"><span class="ct">Torre Tavira &amp; Cathedral tower hours<em>Winter hours are shorter</em></span></label></li>
+    </ul>
+  </div></div>
+
+  <div class="card"><div class="card-b">
+    <h2 class="sec">Pack</h2>
+    <ul class="check" id="cl2">
+      <li><label><input type="checkbox" data-k="p1"><span class="ct">CAC<em>Required at the Rota gate</em></span></label></li>
+      <li><label><input type="checkbox" data-k="p2"><span class="ct">Rental agreement + proof of insurance</span></label></li>
+      <li><label><input type="checkbox" data-k="p3"><span class="ct">Swim gear — suits, caps, goggles, towels</span></label></li>
+      <li><label><input type="checkbox" data-k="p4"><span class="ct">Layers + a windbreaker<em>Trafalgar in November is windy</em></span></label></li>
+      <li><label><input type="checkbox" data-k="p5"><span class="ct">Deck chairs / something to sit on</span></label></li>
+      <li><label><input type="checkbox" data-k="p6"><span class="ct">Chargers, adapters, power bank</span></label></li>
+    </ul>
+    <button class="reset" id="rst" type="button">Clear all</button>
+  </div></div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  Kaiserslautern Kingfish · Cádiz, 23–30 November 2026
+</footer>
+
+<script>
+(function(){
+  // ---- tabs ----
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  function show(tab){
+    tabs.forEach(function(t){
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    window.scrollTo({top:0, behavior:'instant' in document.documentElement.style ? 'instant' : 'auto'});
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ show(t); });
+    t.addEventListener('keydown', function(e){
+      var i = tabs.indexOf(t), n = null;
+      if(e.key === 'ArrowRight') n = tabs[(i+1) % tabs.length];
+      if(e.key === 'ArrowLeft')  n = tabs[(i-1+tabs.length) % tabs.length];
+      if(n){ e.preventDefault(); n.focus(); show(n); }
+    });
+  });
+
+  // ---- countdown ----
+  var dep = new Date(2026, 10, 23);           // 23 Nov 2026
+  var ret = new Date(2026, 10, 30, 10, 0);    // 30 Nov 2026, 10:00
+  var now = new Date();
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var days = Math.round((dep - today) / 86400000);
+  var n = document.getElementById('cd'), l = document.getElementById('cdl');
+  if(days > 1){ n.textContent = days; l.textContent = 'days out'; }
+  else if(days === 1){ n.textContent = '1'; l.textContent = 'day out'; }
+  else if(days === 0){ n.textContent = 'Today'; n.style.fontSize = '34px'; l.textContent = 'travel day'; }
+  else if(now < ret){ n.textContent = 'Now'; n.style.fontSize = '34px'; l.textContent = 'you are in Cádiz'; }
+  else { n.textContent = 'Done'; n.style.fontSize = '34px'; l.textContent = 'trip complete'; }
+
+  // ---- checklist (per-browser convenience only) ----
+  var KEY = 'cadiz2026.checks';
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+  function save(s){ try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e){} }
+  var state = load();
+  var boxes = document.querySelectorAll('.check input[type=checkbox]');
+  Array.prototype.forEach.call(boxes, function(b){
+    if(state[b.dataset.k]) b.checked = true;
+    b.addEventListener('change', function(){
+      state[b.dataset.k] = b.checked;
+      save(state);
+    });
+  });
+  document.getElementById('rst').addEventListener('click', function(){
+    Array.prototype.forEach.call(boxes, function(b){ b.checked = false; });
+    state = {}; save(state);
+  });
+})();
+</script>
+</body>
+</html>
